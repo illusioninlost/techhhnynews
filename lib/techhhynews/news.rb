@@ -1,0 +1,4 @@
+class Techhhynews::News
+
+
+end
