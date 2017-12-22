@@ -14,6 +14,7 @@ class Techhhynews::CLI
       if input.to_i >= 1 && input.to_i <=10
       #get title,summary,and url from News
       #print summary
+      News.scrap
         puts "NEWS"
       elsif input == "exit"
         puts
