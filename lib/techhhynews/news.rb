@@ -6,7 +6,6 @@ class News
     @title = title
     @who = who
     @summary = summary
-    @@all << self
   end
 
   def self.all
@@ -15,13 +14,14 @@ class News
 
   def self.scrap
     doc = Nokogiri::HTML(open("https://www.google.com/search?q=technology+news&source=lnms&tbm=nws&sa=X&ved=0ahUKEwjwz9LNqpzYAhUk8IMKHTI-A5gQ_AUICigB&biw=1536&bih=759"))
-    page = doc.css("div.g, div._cy")
+    page = doc.css("#search")
     page.each do |story|
-    search_title=story.css("div").css("h3").children.children.text
-    search_who=story.css("div.slp").children.children.text.split(" ").first
-    search_summary=story.css("div.st").children.text
-    binding.pry
+    search_title=story.css("tr").css("a").text
+    search_who=story.css("tr").css("span").text
+    search_summary=story.css("tr").css(".st").text
     self.all << {title: search_title, who: search_who, summary: search_summary}
+    binding.pry
+
     end
   end
 
