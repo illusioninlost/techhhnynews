@@ -9,12 +9,14 @@ class Techhhynews::CLI
     puts "Enter the number(1-10) you would like to know the story more about.\nEnter 'exit' to exit."
     puts
     input = ""
+    News.scrap
     while input != "exit"
       input=gets.strip
       if input.to_i >= 1 && input.to_i <=10
       #get title,summary,and url from News
+      #print title
       #print summary
-      News.scrap
+
         puts "NEWS"
       elsif input == "exit"
         puts

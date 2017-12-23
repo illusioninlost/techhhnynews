@@ -15,12 +15,14 @@ class News
 
   def self.scrap
     doc = Nokogiri::HTML(open("https://www.google.com/search?q=technology+news&source=lnms&tbm=nws&sa=X&ved=0ahUKEwjwz9LNqpzYAhUk8IMKHTI-A5gQ_AUICigB&biw=1536&bih=759"))
-    page = doc.css("div.NId")
-    search_title=page.css("div h3")
-    search_who=page.css("div span")
-    search_summary=page.css("div div.st")
+    page = doc.css("div.g, div._cy")
+    page.each do |story|
+    search_title=story.css("div").css("h3").children.children.text
+    search_who=story.css("div.slp").children.children.text.split(" ").first
+    search_summary=story.css("div.st").children.text
     binding.pry
     self.all << {title: search_title, who: search_who, summary: search_summary}
+    end
   end
 
 
