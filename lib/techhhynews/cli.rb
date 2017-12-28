@@ -4,15 +4,15 @@ class Techhhynews::CLI
     puts
     puts "----------Techhhynews from Google----------"
     puts
-    #list
+    News.scrap
+    News.list
     puts
-    puts "Enter the number(1-10) you would like to know the story more about.\nEnter 'exit' to exit."
+    puts "Enter the number(1-17) you would like to know the story more about.\nEnter 'exit' to exit."
     puts
     input = ""
-    News.scrap
     while input != "exit"
       input=gets.strip
-      if input.to_i >= 1 && input.to_i <=10
+      if input.to_i >= 1 && input.to_i <=17
       #get title,summary,and url from News
       #print title
       #print summary

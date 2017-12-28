@@ -1,10 +1,10 @@
 class News
-  attr_accessor :author, :title, :summary
+  attr_accessor :title, :time, :summary
   @@all = []
 
-  def initialize(title=nil, who=nil, summary=nil)
+  def initialize(title=nil, time=nil, summary=nil)
     @title = title
-    @who = who
+    @time = time
     @summary = summary
   end
 
@@ -13,17 +13,20 @@ class News
   end
 
   def self.scrap
-    doc = Nokogiri::HTML(open("https://www.google.com/search?q=technology+news&source=lnms&tbm=nws&sa=X&ved=0ahUKEwjwz9LNqpzYAhUk8IMKHTI-A5gQ_AUICigB&biw=1536&bih=759"))
-    page = doc.css("#search")
+    doc = Nokogiri::HTML(open("https://www.reuters.com/news/technology"))
+    page = doc.css(".ImageStoryTemplate_image-story-container_2baSf")
     page.each do |story|
-    search_title=story.css("tr").css("a").text
-    search_who=story.css("tr").css("span").text
-    search_summary=story.css("tr").css(".st").text
-    self.all << {title: search_title, who: search_who, summary: search_summary}
-    binding.pry
-
+    search_title=story.css("a").text
+    search_time=story.css("span").text
+    search_summary=story.css("div p").text
+    @@all << News.new(search_title, search_time, search_summary)
     end
   end
 
+    def self.list
+      self.all.each_with_index do |story,index|
+        puts (index+1).to_s + ". " + story.title + " - " + story.time
+      end
+    end
 
 end
