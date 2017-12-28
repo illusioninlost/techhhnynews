@@ -17,7 +17,7 @@ class Techhhynews::CLI
       #print title
       #print summary
 
-        puts "NEWS"
+        puts "Enter the number(1-10) for another story"
       elsif input == "exit"
         puts
       else
