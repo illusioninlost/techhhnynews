@@ -2,7 +2,7 @@ class Techhhynews::CLI
 
   def call
     puts
-    puts "----------Techhhynews from Google----------"
+    puts "----------Techhhynews from Reuters.com----------"
     puts
 
     News.scrap
@@ -19,7 +19,7 @@ class Techhhynews::CLI
           News.search(input)
       #print title
       #print summary
-        puts "Enter the number(1-17) for another story or 'list' for a repeated list or 'exit' for exiting"
+        puts "Enter the number(1-17) for another story or 'list' for the repeated list or 'exit' for exiting"
       elsif input == "list"
         News.list
         puts
