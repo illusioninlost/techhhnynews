@@ -1,4 +1,4 @@
-class News
+class Techhhynews::News
   attr_accessor :title, :time, :summary
   @@all = []
 

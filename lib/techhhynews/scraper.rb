@@ -8,7 +8,7 @@ class Techhhynews::Scraper
         search_title=story.css("a").text.gsub("Business News","").gsub("Technology News","").gsub("Fintech","")
         search_time=story.css("span").text
         search_summary=story.css("div p").text
-        News.new(search_title, search_time, search_summary)
+        Techhhynews::News.new(search_title, search_time, search_summary)
       end
     end
 
